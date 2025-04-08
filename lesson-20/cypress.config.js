@@ -19,22 +19,22 @@ export default defineConfig({
   viewportHeight: 720,
   viewportWidth: 1080,
   // reporter: '@shelex/cypress-allure-plugin',
-  // reporter: "cypress-mochawesome-reporter",
-  // reporterOption: {
-  //   reportDir: 'mochawesome-report',
-  //   reportFilename: "[status]_[datetime]-[name]-report",
-  //   overwrite: false,
-  //   html: false,
-  //   // generate intermediate JSON reports
-  //   json: true
-  // },
+  reporter: "cypress-mochawesome-reporter",
+  reporterOption: {
+    //reportDir: 'mochawesome-report',
+    //reportFilename: "[status]_[datetime]-[name]-report",
+    overwrite: true,
+    html: false,
+    // generate intermediate JSON reports
+    json: true
+  },
   e2e: {
     specPattern: 'cypress/e2e/**/*.test.{js,jsx,ts,tsx}',
     env: {
       snapshotOnly: true
     },
     setupNodeEvents(on, config) {
-      // mochawesome(on)
+      mochawesome(on)
       allureWriter(on, config)
       addMatchImageSnapshotPlugin(on)
       on('task', {
